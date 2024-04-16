@@ -13,7 +13,7 @@ The project is a hardware implementation of a maximum-cycle 32-bit Fibonacci lin
 
 A schematic of the circuit may be found at:
 
-https://wokwi.com/projects/394704587372210177
+https://wokwi.com/projects/354858054593504257
 
 The circuit has 10 inputs:
 
@@ -21,9 +21,9 @@ The circuit has 10 inputs:
 | -------- | -------                     |
 | CLK      | Clock                       |
 | RST_N    | Not Used                    |
-| 01       | Not Used                    |
-| 02       | Manual R0 Input Value       |
-| 03       | Input Select                |
+| 01       | ENTRADA 1                    |
+| 02       | ENTRADA 2      |
+| 03       | ENTRADA 3               |
 | 04       | Not Used                    |
 | 05       | Not Used                    |
 | 06       | Not Used                    |
@@ -40,10 +40,10 @@ The cicuit has 8 outputs. They output the values of the 8 right-most registers (
 
 | Output   | Value in    |
 | -------- | -------     |
-| 01       | R25 |
-| 02       | R26 |
-| 03       | R27 |
-| 04       | R28 |
+| 01       | SALIDA 1 |
+| 02       | SALIDA 2 |
+| 03       | SALIDA 3 |
+| 04       | SALIDA 4 |
 | 05       | R29 |
 | 06       | R30 |
 | 07       | R31 |
