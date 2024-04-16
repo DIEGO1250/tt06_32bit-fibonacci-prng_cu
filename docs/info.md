@@ -9,7 +9,8 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-The project is a hardware implementation of a maximum-cycle 32-bit Fibonacci linear feedback shift register (LFSR) with taps at registers (R32, R30, R26, R25). The LFSR is defined with the least-significant bit (LSB) at the left-most register R1 and the most-significant bit (MSB) at the right-most register R32. The LFSR shifts bits from left to right (R_n -> R_n+1), with the LSB populated by XORing bits from the tapped registers (R1 = R32 ^ R30 & R26 ^ R25). The LFSR contains an initialization/fail-safe feedback that prevents the LFSR from entering an all-zero state. If the LFSR is ever in an all-zero state, a "1" value is inserted into R1.
+El proyecto es un circuito que implementa compuertas logicas para el control de giro de dos motores dc, el cual tiene como entradas a- Entrada 1, Entrada 2, Entrada 3,- y como salidas a SALIDA1, SALIDA 2, SALIDA 3, SALIDA 4.
+
 
 A schematic of the circuit may be found at:
 
@@ -51,38 +52,13 @@ The cicuit has 8 outputs. They output the values of the 8 right-most registers (
 
 ## How to test
 
-The circuit can be tested by powering on the circuit, and first setting the Input Select switch (DIP03) to "1" to reset/initialize the entire LFSR to all-zeros. The Input Select switch can then be switched to "0" to allow the LFSR to run from its all-zero initialized value. The first 100 8-bit output values of the LFSR from this zeroized state may be observed using a logic analyzer, and should be:
+LA ENTRADA NUMERO 1 ES LA QUE HACE QUE CAMBIE DE DIRECCION EN AMBOS MOTORES, CUANDO SE PULSA LA ENTRADA 2 NO EXISTE NINGUN CAMBIO, AL PRESIONAR LA ENTRADA 3 SE DETIENEN POR COMPLETO MANTENIENDO EL CLICK EN LA PRIMER ENTRADA
 
-[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],
-[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],
-[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],
-[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],
-[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],
-[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],
-[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],[1 0 0 0 0 0 0 0],[0 1 0 0 0 0 0 0],
-[0 0 1 0 0 0 0 0],[0 0 0 1 0 0 0 0],[0 0 0 0 1 0 0 0],[0 0 0 0 0 1 0 0],
-[0 0 0 0 0 0 1 0],[0 0 0 0 0 0 0 1],[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],
-[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],
-[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],
-[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],
-[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],[1 0 0 0 0 0 0 0],
-[1 1 0 0 0 0 0 0],[0 1 1 0 0 0 0 0],[0 0 1 1 0 0 0 0],[0 0 0 1 1 0 0 0],
-[1 0 0 0 1 1 0 0],[0 1 0 0 0 1 1 0],[1 0 1 0 0 0 1 1],[0 1 0 1 0 0 0 1],
-[0 0 1 0 1 0 0 0],[0 0 0 1 0 1 0 0],[0 0 0 0 1 0 1 0],[0 0 0 0 0 1 0 1],
-[0 0 0 0 0 0 1 0],[0 0 0 0 0 0 0 1],[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],
-[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],
-[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],
-[1 0 0 0 0 0 0 0],[0 1 0 0 0 0 0 0],[1 0 1 0 0 0 0 0],[0 1 0 1 0 0 0 0],
-[0 0 1 0 1 0 0 0],[0 0 0 1 0 1 0 0],[0 0 0 0 1 0 1 0],[0 0 0 0 0 1 0 1],
-[0 0 0 0 0 0 1 0],[0 0 0 0 0 0 0 1],[1 0 0 0 0 0 0 0],[0 1 0 0 0 0 0 0],
-[0 0 1 0 0 0 0 0],[0 0 0 1 0 0 0 0],[1 0 0 0 1 0 0 0],[0 1 0 0 0 1 0 0],
-[0 0 1 0 0 0 1 0],[0 0 0 1 0 0 0 1],[0 0 0 0 1 0 0 0],[0 0 0 0 0 1 0 0],
-[0 0 0 0 0 0 1 0],[0 0 0 0 0 0 0 1],[0 0 0 0 0 0 0 0],[0 0 0 0 0 0 0 0],
-[0 0 0 0 0 0 0 0],[1 0 0 0 0 0 0 0]
+
 
 A python implementation of the 32-bit Fibonacci LFSR can be found at the link below. It may be used for testing the hardware for sequences longer than the initial 100 values.
 
-https://github.com/icarislab/tt06_32bit-fibonacci-prng_cu/main/docs/32-bit-fibonacci-prng_pythong_simulation.py
+
 
 ## External hardware
 
